@@ -32,6 +32,7 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashSet;
+import io.github.pwlin.cordova.plugins.fileopener2.FileProvider;
 
 public class Launcher extends CordovaPlugin {
 	public static final String TAG = "Launcher Plugin";
