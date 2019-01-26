@@ -351,7 +351,16 @@ public class Launcher extends CordovaPlugin {
 			public void run() {
 				Intent intent = new Intent(Intent.ACTION_VIEW);
 				if (dataType != null) {
-					intent.setDataAndType(Uri.parse(uri), dataType);
+					if(Build.VERSION.SDK_INT >= 23) {
+					    Uri apkURI = FileProvider.getUriForFile(
+					      cordova.getActivity(),
+					      cordova.getActivity().getApplicationContext()
+						.getPackageName() + ".opener.provider", new File(Uri.parse(uri).getPath()));
+					    intent.setDataAndType(apkURI, dataType);
+					    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+					  }else{
+					    intent.setDataAndType(Uri.parse(uri), dataType);
+					  }
 				} else {
 					intent.setData(Uri.parse(uri));
 				}
