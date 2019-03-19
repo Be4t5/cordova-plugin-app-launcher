@@ -371,7 +371,12 @@ public class Launcher extends CordovaPlugin {
 				}
 
 				intent.putExtras(extras);
+				
+				try {
+				  cordova.getActivity().finishActivity(LAUNCH_REQUEST);
+				}catch(Exception e){
 
+				}
 				try {
 					mycordova.startActivityForResult(plugin, intent, LAUNCH_REQUEST);
 					((Launcher) plugin).callbackLaunched();
