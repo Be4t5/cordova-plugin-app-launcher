@@ -487,7 +487,9 @@ public class Launcher extends CordovaPlugin {
 						json.put("data", intent.getDataString());
 					} catch(JSONException ignored) {}
 				}
-				callback.success(json);
+				try{
+					callback.success(json);
+				}catch (Exception e){}
 			} else {
 				callback.error("Activity failed (" + resultCode + ").");
 			}
